@@ -46,12 +46,15 @@ function Airplane(name) {
  };
 
 
-    Person.prototype.eat = function (){
+    Person.prototype.eat = function (someFood){
+      if (this.stomach.length < 10) {
+        this.stomach.push(someFood);
+      }
       return `When eating an edible, it should be pushed into the ${this.stomach}`;
       return `The ${this.eat} method should have no effect if there are 10 items in the ${this.stomach}.`
     };
     Person.prototype.poop = function () {
-      return `When an instance poops, its ${this.stomach} should be empty.`
+      this.stomach = [];
     };
     Person.prototype.toString = function () {
       return `It should return a string with ${this.name} and ${this.age}.`
@@ -85,8 +88,8 @@ function Airplane(name) {
   Car.prototype.tank = 0;
   Car.prototype.odometer = 0;
   
-  Car.prototype.fill = function () {
-    return `Add galloons to the ${Car.prototype.tank}.`
+  Car.prototype.fill = function(gallons) {
+    return this.tank += gallons;
   };
 
   /*
@@ -101,19 +104,19 @@ function Airplane(name) {
     this.name = name;
     this.age = age;
     this.favoriteToy = favoriteToy;
+ }  
+
+    Person.prototype.play = function (favoriteToy) {
+    return `Playing with ${this.favoriteToy}`; 
   }
- 
-  Baby.prototype.play = function () {
-    return `Playing with ${this.favoriteToy}.`;
-  }
-  
+
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. It defaults to window binding if there is no block or function parent
+    2. When the "this" keyword is in a method in a function (aka implicit binding), it refers to the owner object left of the dot that is invoking the function.
+    3. When the "this" keyword is used as a parent, grandparent, great grandparent, etc. (aka "owner") in the a constructor prototype (aka new binding), it refers to the pseudo-class inherited element that receives the event.
+    4.  When the "this" keyword in explicit binding, it is used to refer to an object through the .apply and .call 
   */
   
   
